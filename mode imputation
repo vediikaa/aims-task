@@ -1,0 +1,21 @@
+#mode imputation
+def impute_mode(data,feature):
+  count={}
+  for row in data:
+    value=row[feature]
+    if value is not None:
+      if value in count:
+        count[value]+=1
+      else:
+        count[value]=1
+  if count:
+    mode_val=max(count, key=count.get)
+  else:
+    mode_val=None
+  processed_data = []
+  for row in data:
+    new_row = row.copy()
+    if new_row[feature] is None:
+      new_row[feature] = mode_val
+    processed_data.append(new_row)
+  return processed_data

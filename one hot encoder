@@ -1,0 +1,19 @@
+#one hot encoder
+def one_hot_encode(data,feature):
+  unique_values=[]
+  for row in data:
+    value=row[feature]
+    if value is not None and value not in unique_values:
+      unique_values.append(value)
+  encoded_data=[]
+  for row in data:
+    new_row=row.copy()
+    value=new_row.pop(feature)
+    for label in unique_values:
+      column_name=feature+"_"+label
+      if value==label:
+        new_row[column_name]=1
+      else:
+        new_row[column_name]=0
+    encoded_data.append(new_row)
+  return encoded_data

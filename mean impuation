@@ -1,0 +1,19 @@
+#mean imputation
+def impute_mean(data,feature):
+  total=0
+  count=0
+  for row in data:
+    if row[feature] is not None:
+      total+=row[feature]
+      count+=1
+  if count>0:
+    mean_value=total/count
+  else:
+    mean_value=0
+  processed_data = []
+  for row in data:
+    new_row=row.copy()
+    if new_row[feature] is None:
+      new_row[feature]=mean_value
+    processed_data.append(new_row)
+  return processed_data

@@ -1,0 +1,21 @@
+def ordinal_encode(data,feature,categories=None):
+  if categories is None:
+    unique_values=[]
+    for row in data:
+      value=row[feature]
+      if value not in unique_values:
+        unique_values.append(value)
+  else:
+    unique_values=categories
+  encoding={}
+  i=0
+  for val in unique_values:
+    encoding[val]=i
+    i+=1
+  encoded_data=[]
+  for row n data:
+    new_row=row.copy()
+    value=new_row.pop(feature)
+    new_row[feature+"_encoded"]=encoding.get(value,None)
+    encoded_data.append(new_row)
+  return encoded_data,encoding

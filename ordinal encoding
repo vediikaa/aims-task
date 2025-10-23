@@ -13,7 +13,7 @@ def ordinal_encode(data,feature,categories=None):
     encoding[val]=i
     i+=1
   encoded_data=[]
-  for row n data:
+  for row in data:
     new_row=row.copy()
     value=new_row.pop(feature)
     new_row[feature+"_encoded"]=encoding.get(value,None)
